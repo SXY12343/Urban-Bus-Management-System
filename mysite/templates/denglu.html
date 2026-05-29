@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>用户登录</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/denglu.css" />
+  <script src="/static/js/jquery.js"> </script>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+  <script src="/static/bootstrap/js/bootstrap.js"></script>
+</head>
+
+<body>
+    <!-- 两个输入框 -->
+    <div class="container">
+        <div class="row row-centered">
+            <div class="col-xs-6 col-md-4 col-center-block" id="one">
+                <h1 class="textcolor">智慧交通</h1>
+                <h3 class="textcolor">公交调度排班系统</h3>
+                <form action="{%url 'dengLu' %}" method="post">
+{#                  csrf_token 是为了防止csrf（跨站请求伪造）,安全机制去，需要加上#}
+                    {%csrf_token%}
+                    <!-- 输入登录名 -->
+                    <div class="input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon1">
+                            <i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" id="userid" name="username" placeholder="请输入登录名"/>
+                    </div>
+                    <!-- 输入密码 -->
+                    <div class="edit input-group input-group-md">
+                        <span class="input-group-addon" id="sizing-addon2">
+                            <i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" id="userpassword" name="userpassword" placeholder="请输入密码"/>
+                    </div>
+                    <br/>
+
+                    <button type="submit" class="btn btn-primary btn-block" name="submit" value="登录">登录</button>
+
+                    <button type="submit" class="btn btn-success btn-block" name="submit" value="登录">清空</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

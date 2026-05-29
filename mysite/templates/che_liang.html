@@ -1,0 +1,569 @@
+<!--
+*
+*  INSPINIA - Responsive Admin Theme
+*  version 2.7
+*
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>INSPINIA | Dashboard</title>
+
+    <link href="/static/jiemian/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/jiemian/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="/static/jiemian/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <!-- Gritter -->
+    <link href="/static/jiemian/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="/static/jiemian/css/animate.css" rel="stylesheet">
+    <link href="/static/jiemian/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="/static/jiemian/img/logo.jpg" />
+                             </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">智慧交通</strong>
+                             </span> <span class="text-muted text-xs block">公交调度排班系统 <b class="caret"></b></span> </span> </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="index.html">首页信息</a></li>
+                                <li><a href="graph_flot.html">基础数据</a></li>
+                                <li><a href="form_basic.html">排班管理</a></li>
+                                <li class="divider"></li>
+                                <li><a href="table_basic.html">用户管理</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            作者：1707李昂
+                        </div>
+                    </li>
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">首页信息</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href='{%  url 'index' %}'>员工信息管理</a></li>
+                            <li class="active"><a href="{%  url 'che_liang' %}">车辆信息管理</a></li>
+                            <li><a href="{%  url 'zhan_dian' %}">站点信息管理</a></li>
+                            <li><a href="{%  url 'xian_lu' %}">线路信息管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">基础数据</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class="active"><a href="{%  url 'graph_flot' %}">基础数据</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">排班信息</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{%  url 'form_basic' %}">排班信息</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table"></i> <span class="nav-label">关系查看</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{%  url 'table_basic' %}">关系查看</a></li>
+                        </ul>
+                    </li>
+                    <li class="special_link">
+                        <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="">
+                <div class="form-group">
+                    <input type="text" placeholder="智慧交通-公交调度排班系统" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">欢迎来到智慧交通公交调度排班系统</span>
+                </li>
+
+                <li>
+                    <a href="{%  url 'deng_lu' %}">
+                        <i class="fa fa-sign-out"></i> 退出到登录页面
+                    </a>
+                </li>
+                <li>
+                    <a class="right-sidebar-toggle">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+            <div class="row  border-bottom white-bg dashboard-header">
+            <div>
+            <div>
+                <h1 align="center">Welcome 智慧交通-公交调度管理系统</h1>
+                <h2 align="center">车辆信息管理</h2>
+            </div>
+            </div>
+        </div>
+                    
+        <!--这里是上方表单信息-->
+        <div class="container">
+            <table width="100%">
+                <td>
+                    <a type="submit" class="btn btn-primary" data-toggle="modal" data-target="#register">添加</a>
+                    <a type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete">删除</a>
+                    <a type="submit" class="btn btn-success" data-toggle="modal" data-target="#modify">修改</a>
+                </td>
+                <td align="right">
+                    <form action="{%url 'che_liang_form4' %}" class="form-inline" role="form" method="post">
+{#                        csrf_token 是为了防止csrf（跨站请求伪造）,安全机制去，需要加上#}
+                        {%csrf_token%}
+                        <!-- 车牌号 -->
+                        <div class="form-group">
+                            <p>车牌号</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="user_name" name="one" placeholder="">
+                        </div>
+                          <!-- 车辆状态 -->
+                        <div class="form-group">
+                            <p>车辆状态</p>
+                        </div>
+                        <div class="form-group">
+                                <select class="form-control" id="direction" name="two">
+                                <option value="启运" name="two">启运</option>
+                                <option value="停运" name="two">停运</option>
+                                </select>
+                            </div>
+                      <button type="Submit" name="Submit" value="查询">查询</button>
+                    </form>
+                </td>
+            </table>
+        </div>
+        
+        <div class="container">
+        <table style="width: 1150px;" class="table table-striped table-hover table-bordered">
+
+
+            <!--这里是表格-->
+            <thead>
+                <tr class="info">
+                    <th>车辆编号</th>
+                    <th>车牌号</th>
+                    <th>车型</th>
+                    <th>车辆状态</th>
+                    <th>起运时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for line in cheLiang_list %}
+                        <tr>
+                            <td>{{line.buscode}}</td>
+                            <td>{{line.buslicense}}</td>
+                            <td>{{line.bustype}}</td>
+                            <td>{{line.busstatus}}</td>
+                            <td>{{line.starttime}}</td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+        <!-- 增加窗口 -->
+    <div id="register" class="modal fade" tabindex="-1">
+        <div class="modal_wrapper">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">增加车辆信息</h1>
+                    </div>
+                    <div action="index" class="modal-body">
+                        <form action="{%url 'che_liang_form' %}" method="post">
+{#                            csrf_token 是为了防止csrf（跨站请求伪造）,安全机制去，需要加上#}
+                            {%csrf_token%}
+                            <!-- 输入车辆编号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-star"></i></span>
+                                <input class="form-control" id="code" name="busCode" placeholder="请输入车辆编号"/>
+                            </div>
+                            <!-- 输入车牌号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="loginName" name="busLicense" placeholder="请输入车牌号"/>
+                            </div>
+                            <!-- 输入车型 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-ok"></i></span>
+                                <input class="form-control" id="password" name="busType" placeholder="请输入车型"/>
+                            </div>
+                            <!-- 输入状态 -->
+                            <div class="form-group">
+                                <label for="sel1">输入状态</label>
+                                <select class="form-control" id="status" name="busStatus">
+                                <option value="启运">启运</option>
+                                <option value="停运">停运</option>
+                                </select>
+                            </div>
+                            <!-- 输入起运时间 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-phone-alt"></i></span>
+                                <input class="form-control" type="datetime-local" step="01" value="2019-06-24" id="phone" name="startTime" placeholder="请输入起运时间"/>
+                            </div>
+                            <br/>
+                            <button type="Submit" class="btn btn-success btn-block" name="Submit" value="增加">增加并保存</button>
+                            <button class="btn btn-primary btn-block" data-dismiss="modal">返回</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- 删除窗口 -->
+    <div id="delete" class="modal fade" tabindex="-1">
+        <div class="modal_wrapper">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">请选择要删除的车辆编号</h1>
+                    </div>
+                    <div action="index" class="modal-body">
+                        <form action="{%url 'che_liang_form2' %}" method="post">
+{#                             csrf_token 是为了防止csrf（跨站请求伪造）,安全机制去，需要加上#}
+                            {%csrf_token%}
+                            <!-- 输入车辆编号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-star"></i></span>
+                                <input class="form-control" id="my_delete" name="my_delete" placeholder="请输入要删除的车辆编号"/>
+                            </div>
+                            <button type="Submit" class="btn btn-success btn-block" name="Submit" value="增加">确定删除</button>
+                            <button class="btn btn-primary btn-block" data-dismiss="modal">返回</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- 修改窗口 -->
+    <div id="modify" class="modal fade" tabindex="-1">
+        <div class="modal_wrapper">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>×</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">修改车辆信息</h1>
+                    </div>
+                    <div action="index" class="modal-body">
+                        <form action="{%url 'che_liang_form3' %}" method="post">
+{#                            csrf_token 是为了防止csrf（跨站请求伪造）,安全机制去，需要加上#}
+                            {%csrf_token%}
+                            <!-- 输入车辆编号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-star"></i></span>
+                                <input class="form-control" id="code" name="busCode" placeholder="请输入要修改的车辆编号"/>
+                            </div>
+                            <!-- 输入修改后的车辆编号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-star"></i></span>
+                                <input class="form-control" id="code" name="busCode2" placeholder="请输入修改后的车辆编号"/>
+                            </div>
+                            <!-- 输入车牌号 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" id="loginName" name="busLicense" placeholder="请输入车牌号"/>
+                            </div>
+                            <!-- 输入车型 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-ok"></i></span>
+                                <input class="form-control" id="password" name="busType" placeholder="请输入车型"/>
+                            </div>
+                            <!-- 输入状态 -->
+                            <div class="form-group">
+                                <label for="sel1">输入状态</label>
+                                <select class="form-control" id="status" name="busStatus">
+                                <option value="启运">启运</option>
+                                <option value="停运">停运</option>
+                                </select>
+                            </div>
+                            <!-- 输入起运时间 -->
+                            <div class="edit input-group input-group-md">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-phone-alt"></i></span>
+                                <input class="form-control" type="datetime-local" step="01" value="2014-01-13" id="phone" name="startTime" placeholder="请输入起运时间"/>
+                            </div>
+                            <br/>
+                            <button type="Submit" class="btn btn-success btn-block" name="Submit" value="修改">修改并保存</button>
+                            <button class="btn btn-primary btn-block" data-dismiss="modal">返回</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="right-sidebar" class="animated">
+            <div class="sidebar-container">
+
+                <ul class="nav nav-tabs navs-3">
+
+                    <li class="active"><a data-toggle="tab" href="#tab-1">
+                        作者
+                    </a></li>
+                    <li><a data-toggle="tab" href="#tab-2">
+                        项目说明
+                    </a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-3">
+                        <i class="fa fa-gear"></i>
+                    </a></li>
+                </ul>
+
+                <div class="tab-content">
+
+
+                    <div id="tab-1" class="tab-pane active">
+
+                        <div class="sidebar-title">
+                            <h3> <i class="fa fa-comments-o"></i> 这里是作者信息</h3>
+                            <small><i class="fa fa-tim"></i> 欢迎加入智慧交通系统!</small>
+                        </div>
+
+                        <div>
+
+                            <div class="sidebar-message">
+                                <a href="#">
+                                    <div class="pull-left text-center">
+                                        <img alt="image" class="img-circle message-avatar" src="/static/jiemian/img/liang.jpg">
+
+                                        <div class="m-t-xs">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+
+                                        湖北师范大学计算机与信息工程学院1707班李同学
+                                        <br>
+                                        <small class="text-muted">今天天气不错</small>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="tab-2" class="tab-pane">
+
+                        <div class="sidebar-title">
+                            <h3> <i class="fa fa-cube"></i> 用的是bootstrap4框架</h3>
+                            <small><i class="fa fa-tim"></i> 这个项目是智慧公交系统</small>
+                        </div>
+
+                    </div>
+
+                    <div id="tab-3" class="tab-pane">
+
+                        <div class="sidebar-title">
+                            <h3><i class="fa fa-gears"></i> 恭喜你发现一个彩蛋</h3>
+                            <small><i class="fa fa-tim"></i> 你是最好看的</small>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/static/jiemian/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/jiemian/js/bootstrap.min.js"></script>
+    <script src="/static/jiemian/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/jiemian/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Flot -->
+    <script src="/static/jiemian/js/plugins/flot/jquery.flot.js"></script>
+    <script src="/static/jiemian/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="/static/jiemian/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="/static/jiemian/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="/static/jiemian/js/plugins/flot/jquery.flot.pie.js"></script>
+
+    <!-- Peity -->
+    <script src="/static/jiemian/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="/static/jiemian/js/demo/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/static/jiemian/js/inspinia.js"></script>
+    <script src="/static/jiemian/js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="/static/jiemian/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- GITTER -->
+    <script src="/static/jiemian/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="/static/jiemian/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="/static/jiemian/js/demo/sparkline-demo.js"></script>
+
+    <!-- ChartJS-->
+    <script src="/static/jiemian/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="/static/jiemian/js/plugins/toastr/toastr.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.success('作者：1707李昂', '欢迎来到智慧交通公交调度排班系统');
+
+            }, 1300);
+
+
+            var data1 = [
+                [0,4],[1,8],[2,5],[3,10],[4,4],[5,16],[6,5],[7,11],[8,6],[9,11],[10,30],[11,10],[12,13],[13,4],[14,3],[15,3],[16,6]
+            ];
+            var data2 = [
+                [0,1],[1,0],[2,2],[3,0],[4,1],[5,3],[6,1],[7,5],[8,2],[9,3],[10,2],[11,1],[12,0],[13,2],[14,8],[15,0],[16,0]
+            ];
+            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                data1, data2
+            ],
+                    {
+                        series: {
+                            lines: {
+                                show: false,
+                                fill: true
+                            },
+                            splines: {
+                                show: true,
+                                tension: 0.4,
+                                lineWidth: 1,
+                                fill: 0.4
+                            },
+                            points: {
+                                radius: 0,
+                                show: true
+                            },
+                            shadowSize: 2
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#d5d5d5'
+                        },
+                        colors: ["#1ab394", "#1C84C6"],
+                        xaxis:{
+                        },
+                        yaxis: {
+                            ticks: 4
+                        },
+                        tooltip: false
+                    }
+            );
+
+            var doughnutData = {
+                labels: ["App","Software","Laptop" ],
+                datasets: [{
+                    data: [300,50,100],
+                    backgroundColor: ["#a3e1d4","#dedede","#9CC3DA"]
+                }]
+            } ;
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+
+            var doughnutData = {
+                labels: ["App","Software","Laptop" ],
+                datasets: [{
+                    data: [70,27,85],
+                    backgroundColor: ["#a3e1d4","#dedede","#9CC3DA"]
+                }]
+            } ;
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+            new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+
+        });
+    </script>
+    </div>
+</body>
+</html>
